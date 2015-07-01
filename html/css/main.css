@@ -1,0 +1,66 @@
+body {
+    background: #fff none repeat scroll 0 0;
+    font: 14px/1.5 "Hiragino Sans GB","Hiragino Sans GB W3","微软雅黑";
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+.wrap {
+    font-size: 22px;
+    margin: 20px auto 0;
+    padding: 40px 20px;
+    width: 500px;
+}
+.list {
+    padding: 0 60px;
+}
+.list li {
+    border-bottom: 1px solid #f2f2f2;
+    line-height: 50px;
+    list-style: outside none decimal;
+}
+.list li h1 {
+    font-family: "Hiragino Sans GB","Hiragino Sans GB W3","微软雅黑";
+    font-size: 22px;
+    font-style: normal;
+}
+.list li a {
+    display: block;
+    padding: 5px 8px;
+    transition: all 0.6s ease 0s;
+}
+.list li a:hover {
+    background-color: #3c78d8;
+    background-image: linear-gradient(to bottom, #3c78d8, #3c78d8);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    text-indent: 25px;
+    text-shadow: 0 2px 1px #3c78d8;
+}
+.list li h1 a:hover {
+    background-color: #3c78d8;
+    background-image: linear-gradient(to bottom, #3c78d8, #3c78d8);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 2px 1px #3c78d8;
+}
+
+
+a {
+    color: #0a8cd2;
+    text-decoration: none;
+}
+
+.shadow {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px #ececec;
+}

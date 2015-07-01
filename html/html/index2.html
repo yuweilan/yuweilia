@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>表单注册登录</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css" media="all"/>
+</head>
+<body>
+<!--http://1.gitapp.sinaapp.com/base/-->
+
+<div class="wrap shadow">
+    
+<form role="form">
+  <div class="form-group">
+    <label for="exampleInputEmail1">邮箱：</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入您的邮箱地址">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">密码 :</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入您的邮箱密码" onmouseout="text()">
+    <span id="tips" class="help-block" style="display: none;"></span>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> 记住密码
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default" id="submitbtn">登录</button>
+</form> 
+<footer><small><small><small>这里自己设置了三组用户名和密码，三组登录名和密码为：<br>
+  <label for="exampleInputEmail1">邮箱：</label> <code>123@qq.com</code><label for="exampleInputPassword1">密码 :</label> <code>ABC234@</code><br>
+  <label for="exampleInputEmail1">邮箱：</label> <code>qwe@126.com</code><label for="exampleInputPassword1">密码 :</label><code> qwe123 </code><br>
+  <label for="exampleInputEmail1">邮箱：</label> <code>234@msn.com</code><label for="exampleInputPassword1">密码 :</label> <code>QWERTY </code></small></small></small></footer>
+</div>
+ 
+<script type="text/javascript">
+function text(){
+    var data = [           
+                { email : '123@qq.com',password : 'ABC234@' },
+                { email : 'qwe@126.com',password : 'qwe123' },
+                { email : '234@msn.com',password : 'QWERTY' },       
+        ];
+  
+    var mail=document.getElementById("exampleInputEmail1"),
+        pas=document.getElementById("exampleInputPassword1"),
+        sub=document.getElementById("submitbtn");
+        
+
+  var m=mail.value,p=pas.value;
+        
+ for(var i = 0; i < data.length; i++){
+        var m=mail.value,p=pas.value;
+        var son = data[i],sone=son.email,sonp=son.password;
+        var pn=document.getElementById("tips");
+        var par=pas.parentNode;
+        if(m==sone&&p==sonp){
+          pn.style.display="none";         
+          par.setAttribute("class","has-success");
+        }else if(m==null||m==""){
+          pn.style.display="block";
+          pn.innerHTML="<small><small><small>请先填写用户名</small></small></small>"; 
+          par.setAttribute("class","has-error");
+        }else{
+          pn.style.display="block";
+          pn.innerHTML="<small><small><small>用户名和密码不匹配</small></small></small>";
+          par.setAttribute("class","has-error");
+        }
+    }
+
+ }
+</script>
+</body>
+</html>
