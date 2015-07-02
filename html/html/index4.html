@@ -44,12 +44,11 @@
             ],
         ];
     var fir=document.getElementById("firstitem");
-    
     var opt='';
     for(var i = 0; i < data.length; i++){
         var son = data[i];
         opt += '<option value="'+ son[0].tindex +'">' + son[0].tname + '</option>';
-    }console.info(opt);
+    }
     fir.innerHTML = '<select onchange="'+'sel(this)'+'">'+opt+'</select>';
 }
 
