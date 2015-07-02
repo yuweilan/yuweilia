@@ -40,9 +40,7 @@
         ];
     for(var i = 0; i < data.length; i++){
         var son = data[i];
-        var sub = '';
-        sub += '<li><h1><a href="' + son.url + '" target="_blank" title="' + son.title + '">' + son.title + '</a></h1></li>';
-        str += sub;
+        str += '<li><h1><a href="' + son.url + '" target="_blank" title="' + son.title + '">' + son.title + '</a></h1></li>';
     }
     var ol = document.getElementById('ol');
     ol.innerHTML = str;

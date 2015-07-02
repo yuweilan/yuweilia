@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>select多级联动</title>
+<script type="text/javascript">
+ window.onload = function () {
+    data = [
+    [
+                { tindex : '0',tname:'请选择',citem:''},
+            ],
+            [
+                { tindex : '1',tname:'abc',citem:
+                    [
+                        { nindex : '1',nname:'abc1' },
+                        { nindex : '2',nname:'abc2' },
+                        { nindex : '3',nname:'abc3' },
+                        { nindex : '4',nname:'abc4' },
+                    ]
+                },
+            ],
+            [
+                { tindex : '2',tname:'def',citem:
+                    [
+                        { nindex : '1',nname:'def1' },
+                        { nindex : '2',nname:'def2' },
+                        { nindex : '3',nname:'def3' },
+                        { nindex : '4',nname:'def4' },
+                    ]
+                },
+            ],
+            [
+                { tindex : '3',tname:'ghn',citem:
+                    [
+                        { nindex : '1',nname:'ghn1' },
+                        { nindex : '2',nname:'ghn2' },
+                        { nindex : '3',nname:'ghn3' },
+                        { nindex : '4',nname:'ghn4' },
+                    ]
+                },
+            ],
+            [
+                { tindex : '4',tname:'xyz',citem:''},
+            ],
+        ];
+    var fir=document.getElementById("firstitem");
+    
+    var opt='';
+    for(var i = 0; i < data.length; i++){
+        var son = data[i];
+        opt += '<option value="'+ son[0].tindex +'">' + son[0].tname + '</option>';
+    }console.info(opt);
+    fir.innerHTML = '<select onchange="'+'sel(this)'+'">'+opt+'</select>';
+}
+
+ function sel(obj){
+    var num=obj.options[obj.selectedIndex].value;
+    var sec=document.getElementById("seconditem");
+    for(var i = 0; i < data.length; i++){
+        var son = data[num];      
+    }
+    var sc=son[0].citem,opts='';
+    if(sc.length>0){
+        sec.style.display="inline";
+    for(var j = 0; j < sc.length; j++){
+                var sons=sc[j];
+                opts+='<option value="'+ sons.nindex +'">' + sons.nname+ '</option>';
+            }
+            sec.innerHTML= '<select>'+opts+'</select>';
+        }else{
+            sec.style.display="none";
+        }
+}
+</script>
+</head>
+<body>
+    <div id="">
+        <span id="firstitem" ></span>
+        <span id="seconditem"></span>
+    </div>
+</body>
+</html>
+</body>
+</html>
