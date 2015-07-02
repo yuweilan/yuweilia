@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>用键盘控制猪的移动方向</title>
+<style type="text/css"> 
+html,body{overflow:hidden;}
+body{margin:0;padding:0;}
+pre{color:green;padding:10px 15px;background:#f0f0f0;border:1px dotted #333;font:12px/1.5 Courier New;margin:12px;}
+span{color:#999;}
+#box{position:absolute;top:50px;left:300px;width:100px;height:100px;}
+#pig{position: absolute;top: 40px;}#pig_head {width: 200px;height: 200px;background-color: #FA8CC8;border-radius: 100px;}#pig_ear_left {    width: 0;   height: 0;position: absolute;top: 15px;left: 18px;       border-left: 20px solid transparent;   border-right: 20px solid transparent;   border-bottom: 28px solid #D30073;-webkit-transform: rotate(-25deg);}#pig_ear_right {   width: 0;   height: 0;position: absolute;top: 15px;left: 145px; border-left: 20px solid transparent;    border-right: 20px solid transparent;   border-bottom: 28px solid #D30073;-webkit-transform: rotate(25deg);}#pig_eye_left {position: absolute;top: 50px;left: 70px;width: 12px;height: 20px;    background: black;  -webkit-border-radius: 50px/100px;}#pig_eye_right {position: absolute;top: 50px;left: 125px;width: 12px;height: 20px;   background: black;  -webkit-border-radius: 50px/100px;}#pig_snout {position: absolute;top: 90px;left: 62px;width: 80px; height: 55px;   background: #FA4EAC;    -webkit-border-radius: 90px/60px;}#pig_snout_hole_left { position: absolute;top: 100px;left: 80px;width: 17px;height: 35px; background: #E01B87;    -webkit-border-radius: 60px/100px;}#pig_snout_hole_right { position: absolute; top: 100px; left: 111px; width: 17px; height: 35px;   background: #E01B87;    -webkit-border-radius: 60px/100px;}
+    </style>
+<script type="text/javascript"> 
+window.onload = function ()
+{
+    var oBox = document.getElementById("box");
+    var bLeft = bTop = bRight = bBottom = bCtrlKey = false;
+    
+    setInterval(function ()
+    {
+        if (bLeft)
+        {
+            oBox.style.left = oBox.offsetLeft - 10 + "px"
+        }
+        else if (bRight)
+        {
+            oBox.style.left = oBox.offsetLeft + 10 + "px"
+        }
+        
+        if (bTop)
+        {
+            oBox.style.top = oBox.offsetTop - 10 + "px" 
+        }
+        else if(bBottom)
+        {
+            oBox.style.top = oBox.offsetTop + 10 + "px"
+        }
+        //防止溢出
+        limit();
+    },30);  
+    
+    document.onkeydown = function (event)
+    {
+        var event = event || window.event;
+        bCtrlKey = event.ctrlKey;
+        
+        switch (event.keyCode)
+        {
+            case 37:
+                bLeft = true;
+                break;
+            case 38:
+                if(bCtrlKey)
+                {
+                    var oldWidth = oBox.offsetWidth;
+                    var oldHeight = oBox.offsetHeight;
+                    
+                    oBox.style.width = oBox.offsetWidth * 1.5 + "px";
+                    oBox.style.height = oBox.offsetHeight * 1.5 + "px";             
+                    
+                    oBox.style.left = oBox.offsetLeft - (oBox.offsetWidth - oldWidth) / 2 + "px";
+                    oBox.style.top = oBox.offsetTop - (oBox.offsetHeight - oldHeight) / 2 + "px";
+                    
+                    break;  
+                }
+                bTop = true;
+                break;
+            case 39:
+                bRight = true;
+                break;
+            case 40:
+                if(bCtrlKey)
+                {
+                    var oldWidth = oBox.offsetWidth;
+                    var oldHeight = oBox.offsetHeight;
+                    
+                    oBox.style.width = oBox.offsetWidth * 0.75 + "px";
+                    oBox.style.height = oBox.offsetHeight * 0.75 + "px";                
+                    
+                    oBox.style.left = oBox.offsetLeft - (oBox.offsetWidth - oldWidth) / 2 + "px";
+                    oBox.style.top = oBox.offsetTop - (oBox.offsetHeight - oldHeight) / 2 + "px";
+                    
+                    break;  
+                }
+                bBottom = true;
+                break;
+            case 49:
+                bCtrlKey && (oBox.style.background = "green");
+                break;
+            case 50:
+                bCtrlKey && (oBox.style.background = "yellow");
+                break;
+            case 51:
+                bCtrlKey && (oBox.style.background = "blue");
+                break;
+        }
+        
+        return false
+    };
+ 
+    document.onkeyup = function (event)
+    {
+        switch ((event || window.event).keyCode)
+        {
+            case 37:
+                bLeft = false;
+                break;
+            case 38:
+                bTop = false;
+                break;
+            case 39:
+                bRight = false;
+                break;
+            case 40:
+                bBottom = false;
+                break;
+        }
+    };
+ 
+    //防止溢出
+    function limit()
+    {
+        var doc = [document.documentElement.clientWidth, document.documentElement.clientHeight]
+        //防止左侧溢出
+        oBox.offsetLeft <=0 && (oBox.style.left = 0);
+        //防止顶部溢出
+        oBox.offsetTop <=0 && (oBox.style.top = 0);
+        //防止右侧溢出
+        doc[0] - oBox.offsetLeft - oBox.offsetWidth <= 0 && (oBox.style.left = doc[0] - oBox.offsetWidth + "px");
+        //防止底部溢出
+        doc[1] - oBox.offsetTop - oBox.offsetHeight <= 0 && (oBox.style.top = doc[1] - oBox.offsetHeight + "px")
+    }
+};
+</script>
+</head>
+<body>
+<div id="box">
+<div id="pig">  <div id="pig_head"></div>   <div id="pig_ear_left"></div>   <div id="pig_ear_right"></div>  <div id="pig_eye_left"></div>   <div id="pig_eye_right"></div>  <div id="pig_snout"></div>  <div id="pig_snout_hole_left"></div>    <div id="pig_snout_hole_right"></div></div>
+    </div>
+</body>
+</html>
+</body>
+</html>
