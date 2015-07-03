@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>弹出层</title>
+<style type="text/css"> 
+    *{
+    margin:0;
+    padding:0;
+    font-size:12px;
+    }
+body{
+    background-color:#FFF000;
+}
+.top{
+    width:100%;
+    height:27px;
+    background:url(img/top_bg.jpg) repeat-x;
+}
+.top_content{
+    width:1000px;
+    margin:0 auto;
+    }
+.top_content li
+{
+    list-style-image:url(img/li_bg.gif);
+    float:left;
+    width:70px;
+    line-height:27px;
+}
+.top_content a:link,.top_content a:visited
+{
+    color:#8E8E8E;
+    text-decoration:none;
+}
+.top_content a:hover,.top_content a:active
+{
+    color:#F00;
+    text-decoration:none;
+}
+.wrap{
+    width:1000px;
+    margin:0 auto;
+}
+.logo
+{
+    height:80px;
+    background-color:#FFF;
+}
+.logo_left{
+    width:200px;
+    height:28px;
+    float:left;
+    margin-top:30px;
+}
+#btnLogin{
+    background-color: red;
+    width:200px;
+    height:28px;
+}
+.logo_right{
+    width:300px;
+    float:right;
+    height:28px;
+    margin-top:30px;
+    color:#8E8E8E;
+}
+.logo_right img{
+    vertical-align:middle;
+    margin:10px;
+}
+.tel{
+    font-family:"微软雅黑";
+    font-size:16px;
+    color:#C00;
+}
+.nav {
+    height: 40px;
+}
+.nav_left {
+    width: 10px;
+    background: url(img/nav_left.jpg) no-repeat;
+}
+.nav_mid {
+    width: 980px;
+    background: url(img/nav_bg.jpg) repeat-x;
+    line-height: 40px;
+}
+.nav_right {
+    width: 10px;
+    background: url(img/nav_right.jpg) no-repeat;
+}
+.nav_left, .nav_mid, .nav_right {
+    height: 40px;
+    float: left;
+    display: inline;
+}
+.nav_mid_left,.nav_mid_right{
+    fioat:left;
+}
+.nav_mid_left{
+    width:680px;
+}
+.nav_mid-right{
+    width:300px;
+}
+.nav_mid li {
+    float: left;
+    list-style-type: none;
+    width: 100px;
+    font-family: "微软雅黑";
+    text-align: center;
+}
+.nav_mid a:link, .nav_mid a:visited {
+    font-size: 16px;
+    color: #FFF;
+    text-decoration: none;
+}
+.nav_mid a:hover, .nav_mid a:active {
+    font-size: 16px;
+    color: #FF0;
+    text-decoration: none;
+}
+.search_text{
+    width:190px;
+    height:25px;
+    margin-top:5px;
+    background:url(img/search.jpg) no-repeat right center;
+    background-color: #FFF;
+    border: 1px solid #FFF;
+    padding-right: 25px;
+}
+.main{
+    width: 100%;
+    height:200px;
+    background-color:red;
+    margin:0 auto;
+    position: relative;
+}
+.foot{
+    width: 100%;
+    height:200px;
+    background-color:blue;
+    margin:0 auto;
+    position: relative;
+}
+#close{ 
+    background:url(img/close.png) no-repeat; 
+    width:30px; 
+    height:30px; 
+    cursor:pointer; 
+    position:absolute; 
+    right:5px; 
+    top:15px; 
+    text-indent:-999em;
+    }
+#mask{ 
+    background-color:#ccc;
+    opacity:0.5;
+    filter: alpha(opacity=50); 
+    position:absolute; 
+    left:0;
+    top:0;
+    z-index:1000;
+    }
+#login{ 
+    position:fixed;
+    z-index:1001;
+    }
+.loginCon{ 
+    position:relative; 
+    width:670px;
+    height:380px;
+    background:url(img/1.jpg) #ffffff center center no-repeat;
+    }
+</style>
+<script type="text/javascript"> 
+function openNew(){
+    //获取页面的高度和宽度
+    var sWidth=document.body.scrollWidth;
+    var sHeight=document.body.scrollHeight;
+    
+    //获取页面的可视区域高度和宽度
+    var cHeight=document.documentElement.clientHeight;
+    
+    var oMask=document.createElement("div");//蒙层设置
+        oMask.id="mask";
+        oMask.style.height=sHeight+"px";
+        oMask.style.width=sWidth+"px";
+        document.body.appendChild(oMask);
+    var oLogin=document.createElement("div");//弹出的登录框设置
+        oLogin.id="login";
+        oLogin.innerHTML="<div class='loginCon'><div id='close'>点击关闭</div></div>";
+        document.body.appendChild(oLogin);
+    
+    //获取登陆框的宽和高
+    var dHeight=oLogin.offsetHeight;
+    var dWidth=oLogin.offsetWidth;
+        //设置登陆框的left和top
+        oLogin.style.left=sWidth/2-dWidth/2+"px";
+        oLogin.style.top=cHeight/2-dHeight/2+"px";
+    //点击关闭按钮
+    var oClose=document.getElementById("close");
+    
+        //点击登陆框以外的区域也可以关闭登陆框
+        oClose.onclick=oMask.onclick=function(){
+                    document.body.removeChild(oLogin);
+                    document.body.removeChild(oMask);
+                    };
+                    };
+window.onload=function(){
+            var oBtn=document.getElementById("btnLogin");
+                //点击登录按钮
+                oBtn.onclick=function(){
+                    openNew();
+                    return false;
+                    }
+                
+        }
+</script>
+</head>
+<body>
+<div class="top">
+  <div class="top_content">
+    <ul>
+        <li><a href="#">设为首页</a></li>
+        <li><a href="#">加入收藏</a></li>
+        <li><a href="#">联系我们</a></li>        
+    </ul>
+
+  </div>
+ </div><!--top结束-->
+<div class="wrap">
+    <div class="logo">
+        <div class="logo_left">
+            <button id="btnLogin" value="登录">登录</button>
+        </div>
+        <div class="logo_right">
+            <img src="images/tel.jpg" alt="服务热线" />24小时服务热线：<span class="tel">123-456-7890</span>        </div>
+    </div><!--logo结束-->
+    
+    <div class="nav">
+        <div  class="nav_left"></div>
+        <div class="nav_mid">
+             <div class="nav_mid_left">
+                 <ul>
+                     <li><a href="#">首页</a></li>
+                     <li><a href="list.html">个人信息</a></li>
+                     <li><a href="list.html">游戏动态</a></li>
+                     <li><a href="list.html">最新上线</a></li>
+                     <li><a href="list.html">最热视频</a></li>
+                     <li><a href="list.html">玩家指南</a></li>
+                </ul>
+            </div>
+            <!--nav_mid_left结束-->
+            <div class="nav_mid_right">
+                <form action="" method="post">
+                    <input type="text" class="search_text" />
+                    <!--<input type="text" class="search_text" x-webkit-speech />-->
+                </form>
+            </div>
+             <!--nav_mid_right结束--> 
+         </div>
+    <!--导航主体nav_mid结束-->
+         <div class="nav_right"></div>
+    </div>
+  <!--nav结束-->
+  <div class="main">
+  </div>
+  <div class="foot">
+  </div>
+  </div>
+</body>
+</html>
+</body>
+</html>
