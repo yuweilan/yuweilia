@@ -38,6 +38,7 @@
         one=document.getElementById("one"),
         two=document.getElementById("two"),
         three=document.getElementById("three");
+        console.info(sub);
     txtname.onblur=function(){
         var tna=txtname.value;
         one.innerHTML='<code id="len">'+tna+'</code><code>*</code>';
@@ -49,9 +50,11 @@
     sub.onclick=function(){
         var len=document.getElementById("len"),
             wid=document.getElementById("wid");
-            console.info(len.innerText);
+        var le=len.innerHTML.replace(/<.+?>/gim,''),
+        	wi=len.innerHTML.replace(/<.+?>/gim,'');
+            console.info(len.innerHTML.replace(/<.+?>/gim,''));
        if(!(len.length<0||wid.length<0)){
-           three.innerHTML=breakChocolate(len.innerText,wid.innerText); 
+           three.innerHTML=breakChocolate(le,wi); 
         }else{
             alert("长宽不能为空");
         }
