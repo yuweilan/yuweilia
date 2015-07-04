@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>切方格算法验证</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../css/main.css" media="all"/>
+
+  </head>
+<body>
+<div class="wrap shadow">
+<div class="jumbotron">
+  <h4>给一个 n x m 的方格 最少切割多少次能全部分割成1x1的小方格，要进行边界判断，如果参数不为正整数，就返回0 ！比如2x1的要切1刀，3x1切2刀 ，2x2的方格需要切3刀，5x5的方格要切24刀。</h4>
+   <h4>请在下面的输入框中输入长和宽进行判断计算</h4>
+</div>
+<form role="form">
+  <div class="form-group">
+    <label for="exampleInputEmail1">长：</label>
+    <input class="form-control" id="exampleInputEmail1" placeholder="请输入方格的长">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">宽 :</label>
+    <input class="form-control" id="exampleInputPassword1" placeholder="请输入方格的宽">
+  </div>
+  <div type="submit" class="btn btn-default" id="submitbtn">提交</div>
+  <div class="jumbotron">
+        <h3>方格规格</h3>
+        <span id="one"></span><span id="two"></span>
+        <h3>此方格需要切<lable id="three">&#12288;</lable>刀</h3>
+</div>
+  </form>
+
+    </div>
+<script type="text/javascript">
+    var sub=document.getElementById("submitbtn"),
+        txtname=document.getElementById("exampleInputEmail1"),
+        txtcode=document.getElementById("exampleInputPassword1"),
+        one=document.getElementById("one"),
+        two=document.getElementById("two"),
+        three=document.getElementById("three");
+    txtname.onblur=function(){
+        var tna=txtname.value;
+        one.innerHTML='<code id="len">'+tna+'</code><code>*</code>';
+    }
+    txtcode.onblur=function(){
+        var tco=txtcode.value;
+        two.innerHTML='<code id="wid">'+tco+'</code>';
+    }
+    sub.onclick=function(){
+        var len=document.getElementById("len"),
+            wid=document.getElementById("wid");
+            console.info(len.innerText);
+       if(!(len.length<0||wid.length<0)){
+           three.innerHTML=breakChocolate(len.innerText,wid.innerText); 
+        }else{
+            alert("长宽不能为空");
+        }
+    }
+    var breakChocolate = function(n, m) {
+    var re=/^[1-9]\d*$/;
+        if(re.test(n)&&re.test(m)){
+            return m*n-1;
+            }else{
+            return 0;
+            }
+        };
+    console.info(breakChocolate(5,5));
+
+</script>
+</body>
+</html>
