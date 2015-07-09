@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>字符串反转</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../css/main.css" media="all"/>
+
+  </head>
+<body>
+<div class="wrap shadow">
+<div class="jumbotron">
+  <h4>字符串反转</h4>
+   <h4>请在下面的输入框中输入字符串</h4>
+</div>
+<form role="form">
+  <div class="form-group">
+    <label for="exampleInputEmail1">原字符串：</label>
+    <input class="form-control" id="exampleInputEmail1" placeholder="请输入字符串">
+  </div>
+  <div type="submit" class="btn btn-default" id="submitbtn">提交</div>
+  <div class="jumbotron">
+        <h3>原字符串</h3>
+        <span id="one"></span>
+        <h3>反转后的字符串<lable id="three">&#12288;</lable></h3>
+</div>
+  </form>
+
+    </div>
+<script type="text/javascript">
+    var sub=document.getElementById("submitbtn"),
+        txtname=document.getElementById("exampleInputEmail1"),
+        one=document.getElementById("one"),
+        three=document.getElementById("three");
+    //验证文本值是否为空
+    function trim(s){
+        return s.replace(/(^\s*)|(\s*$)/g, "");
+    }
+    //讲填写的需要反转的字符串输出
+    txtname.onblur=function(){
+        var tna=txtname.value;
+        one.innerHTML='<code id="len">'+tna+'</code>';
+    }
+    //提交确认反转该字符串
+    sub.onclick=function(){
+        var len=document.getElementById("len");
+        var le=len.innerHTML.replace(/<.+?>/gim,'');//获取节点文本值（因为火狐不支持innerText,所以此处采取正则方法取得innerHTML文本部分）
+       if(trim(le)==""){
+           alert("输入的字符串不能为空，请重新输入");
+        }else{
+            three.innerHTML=le.reverse(le);
+        }
+    }
+    String.prototype.reverse = function(str){
+                                var str2="";
+                                for(var i=0;i<str.length;i++){
+                                    str2+=str.charAt(str.length-i-1);
+                                    }
+                                    return str2;
+                            }
+</script>
+</body>
+</html>
