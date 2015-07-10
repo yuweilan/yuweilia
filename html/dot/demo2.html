@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>for evaluation for in 循环</title>
+</head>
+<script src="../js/doT.js" type="text/javascript"></script>
+
+<script id="evaluationtmpl" type="text/x-dot-template">
+{{ for(var prop in it) { }}
+<div>KEY:{{= prop }}---VALUE:{{= it[prop] }}</div>
+{{ } }}
+</script>
+
+<body>
+<div id="evaluation"></div>
+	
+</body>
+<script type="text/javascript">
+var dataEval = {"name":"Jake","age":31,"interests":["basketball","hockey","photography"],"contact":{"email":"jake@xyz.com","phone":"999999999"}};
+var evalText = doT.template(document.getElementById("evaluationtmpl").innerHTML);
+document.getElementById("evaluation").innerHTML=evalText(dataEval);
+
+
+</script>
+
+
+
+
+</html>
+

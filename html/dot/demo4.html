@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>for conditionals 条件</title>
+</head>
+<script src="../js/doT.js" type="text/javascript"></script>
+
+<script id="conditionstmpl" type="text/x-dot-template">
+{{? !it.name }}
+<div>Oh, I love your name, {{=it.name}}!</div>
+{{?? !it.age === 0}}
+<div>Guess nobody named you yet!</div>
+{{??}}
+You are {{=it.age}} and still dont have a name?
+{{?}}
+</script>
+
+
+
+<body>
+<div id="condition"></div>
+	
+</body>
+<script type="text/javascript">
+var datacondition = {"name":"Jake","age":31}
+var conditionText = doT.template(document.getElementById("conditionstmpl").innerHTML);
+document.getElementById("condition").innerHTML=conditionText(datacondition);
+
+</script>
+
+
+
+
+</html>
+

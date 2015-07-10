@@ -90,7 +90,7 @@ header h2 {
 }
 
 .inner {
-  width: 620px;
+  width: 700px;
   margin: 0 auto;
 }
 
@@ -105,7 +105,7 @@ header h2 {
 a.button {
   display: block;
   float: left;
-  width: 179px;
+  width: 200px;
   padding: 12px 8px 12px 8px;
   margin-right: 14px;
   font-size: 15px;
@@ -151,7 +151,9 @@ a.button span {
   height: 23px;
   padding-left: 50px;
 }
-
+#download-zip{
+  float:right;
+}
 #download-zip span {
   background: transparent url(../images/zip-icon.png) 12px 50% no-repeat;
 }
@@ -160,9 +162,6 @@ a.button span {
 }
 #view-on-github span {
   background: transparent url(../images/octocat-icon.png) 12px 50% no-repeat;
-}
-#view-on-github {
-  margin-right:50px;
 }
 
 code, pre {
