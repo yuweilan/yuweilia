@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>下拉菜单多重实现方式</title>
+<style type="text/css"> 
+   *{ margin:0px; padding:0px;}
+    #menu{ background-color:#eee; width:400px; height:40px; margin:0 auto;}
+    #menu ul{ list-style:none;}
+    #menu ul li{ float:left;  line-height:40px; text-align:center; position:relative;}
+    #menu a{ text-decoration:none; color:#000; display:block; width:90px;}
+    #menu a:hover{ color:#FFF; background-color:#666;}
+    #menu ul li ul li{ float:none; border-left:none; margin-top:2px; background-color:#eee; } 
+    #menu ul li ul{   display:none; width:90px; position:absolute;}
+    #menu ul li:hover ul{ display:block;}
+    #nav{ width:400px; height:40px; background-color:#eee; margin:0 auto;margin-top:240px;}
+    #nav ul{ list-style:none;}
+    #nav ul li{ float:left; line-height:40px; text-align:center; width:100px;}
+    #nav a{ text-decoration:none; color:#000; display:block;}
+    #nav a:hover{ color:#F00; background-color:#666;}
+    #nav ul li ul li{ float:none;background-color:#eee; margin:2px 0px;}
+    #nav ul li ul{ display:none;}
+    }
+</style>
+
+</head>
+<body>
+<!-- css方式实现 -->
+<div id="menu">
+    <ul>
+        <li>
+            <a href="#">前端</a>
+        </li>
+        <li>
+            <a href="#">工具</a>
+            <ul>
+                <li>
+                    <a href="#">JavaScript</a>
+                </li>
+                <li>
+                    <a href="#">jQuery</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">学习中心</a>
+            <ul>
+                <li>
+                    <a href="#">视频学习</a>
+                </li>
+                <li>
+                    <a href="#">案例学习</a>
+                </li>
+                <li>
+                    <a href="#">交流平台</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">经典案例</a>
+        </li>
+    </ul>
+</div>
+<!-- css方式实现 -->
+<!-- js方式实现 -->
+<div id="nav">
+<ul>
+  <li><a href="#">前端</a></li>
+  <li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#">工具</a>
+     <ul>
+         <li><a href="#">JavaScript</a></li>
+         <li><a href="#">Html/CSS</a></li>
+     </ul>  
+  </li>
+  <li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#">学习中心</a>
+      <ul>
+         <li><a href="#">视频学习</a></li>
+         <li><a href="#">案例练习</a></li>
+         <li><a href="#">交流平台</a></li>
+     </ul>    
+  </li>
+  <li><a href="#">经典案例</a></li>
+  </ul>
+</div>
+<!-- js方式实现 -->
+<script type="text/javascript"> 
+//显示当前li标签内的ul标签和样式
+function displaySubMenu(li) {
+    var subMenu = li.getElementsByTagName("ul")[0];
+    subMenu.style.display = "block";
+}
+//隐藏当前li标签内的ul标签和样式
+function hideSubMenu(li) {
+    var subMenu = li.getElementsByTagName("ul")[0];
+    subMenu.style.display = "none";
+}
+</script>
+</body>
+</html>
+</body>
+</html>
