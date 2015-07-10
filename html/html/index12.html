@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>取字符串相同下标的字符</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../css/main.css" media="all"/>
+
+  </head>
+<body>
+<div class="wrap shadow">
+<div class="jumbotron">
+  <h4>取字符串相同下标的字符</h4>
+   <h4>请在下面的输入框中输入字符串1、字符串2和字符串3（字符串1的字符串），然后点击提交，得到字符串4（与字符串3在字符串1的下标相同的字符串2的子字符串）</h4>
+</div>
+<form role="form">
+  <div class="form-group">
+    <label for="exampleInputEmail1">字符串1：</label>
+    <input class="form-control" id="stri1" placeholder="请输入字符串1">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">字符串2 :</label>
+    <input class="form-control" id="stri2" placeholder="请输入字符串2">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">字符串3：</label>
+    <input class="form-control" id="stri3" placeholder="请输入字符串3">
+  </div>
+  <div type="submit" class="btn btn-default" id="submitbtn">提交</div>
+  <div class="jumbotron">
+    <h4>字符串1：<span id="stri1t"></span></h4>
+    <h4>字符串2：<span id="stri2t"></span></h4>
+    <h4>字符串3：<span id="stri3t"></span></h4>
+    <h3>字符串4：<lable id="stri4t">&#12288;</lable></h3>
+</div>
+  </form>
+
+    </div>
+<script type="text/javascript">
+    var sub=document.getElementById("submitbtn"),
+        stri1=document.getElementById("stri1"),
+        stri2=document.getElementById("stri2"),
+        stri3=document.getElementById("stri3");
+    //获取当前输入框的值
+    function showtext(){
+      var vaul=this.value;
+      var vlt=this.id+"t",vltt=this.id+"s";
+      var vlts=document.getElementById(String(vlt));
+      vlts.innerHTML='<code id="'+vltt+'">'+vaul+'</code>';
+      console.info(vlts);
+    }
+    //解决IE不兼容DOM2级的问题
+    var eventhandel={
+      //添加句柄检测浏览器是否支持DOM2级操作，并进行兼容操作
+      addhandel:function(element,type,handel){
+        if(element.addEventListener){
+          element.addEventListener(type,handel,false);
+        }else if(element.attachEvent){
+          element.attachEvent('on'+type,handel);
+        }else{
+          element['on'+type]=handel;
+        }
+      }
+    }
+    //利用DOM2级事件处理程序是代码提高代码的重用率
+    eventhandel.addhandel(stri1,'blur',showtext);
+    eventhandel.addhandel(stri2,'blur',showtext);
+    eventhandel.addhandel(stri3,'blur',showtext);
+    //提交按钮的点击事件，得到结果
+    sub.onclick=function(){
+        var stri1s=document.getElementById("stri1s"),
+            stri2s=document.getElementById("stri2s"),
+            stri3s=document.getElementById("stri3s"),
+            stri4t=document.getElementById("stri4t");
+        var str1=stri1s.innerHTML.replace(/<.+?>/gim,''),
+            str2=stri2s.innerHTML.replace(/<.+?>/gim,''),
+            str3=stri3s.innerHTML.replace(/<.+?>/gim,'');
+        var Sub = new SubstitutionCipher(str1, str2);
+        var str4= Sub.encode(str3);
+        stri4t.innerHTML=str4;
+          }
+    //获取相同下标字符串的算法操作
+    function SubstitutionCipher(str1, str2){
+     this.encode=function(str){
+        var s=str1.indexOf(str);
+        var len=str.length;
+        var s2=s+len;
+        var s3;
+        if(str2.length>=s2){
+            s3=str2.substr(s,len);
+        }else{
+            s3=str;
+        }
+        return s3;
+      }
+    }
+   
+
+</script>
+</body>
+</html>
